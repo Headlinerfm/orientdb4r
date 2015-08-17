@@ -1,4 +1,19 @@
+= interview
 
+== Getting started
+
+* download odb: http://orientdb.com/download.php?email=unknown@unknown.com&file=orientdb-community-2.1.0.tar.gz&os=mac
+* cd into bin folder, run <tt>./server.sh</tt> to start server, use root password <tt>root</tt>
+* make new folder, <tt>git clone https://github.com/Headlinerfm/orientdb4r && cd orientdb4r && git checkout interview</tt>
+* <tt>bundle && bundle exec rake db:setup4test && bundle exec rake test</tt> -- should result in a couple failures
+* <tt>bundle exec rake db:cp:setup && bundle exec rake db:cp:seed</tt>
+* install pry if you need to, then: <tt>pry --gem</tt>
+* in pry/irb:
+    ODBClient = Orientdb4r.client(:host=>'localhost')
+    ODBClient.connect :database => 'cp', :user => 'root', :password => 'root'
+
+
+---
               _            _      _ _     _  _
     ___  _ __(_) ___ _ __ | |_ __| | |__ | || |  _ __
    / _ \| '__| |/ _ \ '_ \| __/ _` | '_ \| || |_| '__|
