@@ -229,7 +229,7 @@ module Orientdb4r
         response = get_database
         children = response['classes'].select { |i| i['superClass'] == name }
         unless children.empty?
-          raise OrientdbError, "class is super-class, cannot be deleted, name=#{name}"
+          raise ClientError, "class is super-class, cannot be deleted, name=#{name}"
         end
       end
 
