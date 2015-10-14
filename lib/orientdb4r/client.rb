@@ -229,7 +229,7 @@ module Orientdb4r
         response = get_database
         children = response['classes'].select { |i| i['superClass'] == name }
         unless children.empty?
-          raise OrientdbError, "class is super-class, cannot be deleted, name=#{name}"
+          raise ClientError, "class is super-class, cannot be deleted, name=#{name}"
         end
       end
 
@@ -317,7 +317,7 @@ module Orientdb4r
           query_log("Orientdb4r::Client#call_server", URI.decode(debug_string))
         end
         idx = lb_strategy.node_index
-        raise OrientdbError, lb_all_bad_msg if idx.nil? # no good node found
+        raise ConnectionError, lb_all_bad_msg if idx.nil? # no good node found
 
         begin
           node = @nodes[idx]
@@ -334,7 +334,7 @@ module Orientdb4r
           end
         end until idx.nil? and response.nil? # both 'nil' <= we tried all nodes and all with problem
 
-        raise OrientdbError, lb_all_bad_msg
+        raise ConnectionError, lb_all_bad_msg
       end
 
 

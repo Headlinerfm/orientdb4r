@@ -112,7 +112,7 @@ class TestDdo < Test::Unit::TestCase
 
     # CLASS extends super_class
     @client.create_class(CLASS, :extends => super_clazz);
-    assert_raise Orientdb4r::OrientdbError do @client.drop_class(super_clazz, :mode => :strict); end
+    assert_raise Orientdb4r::ClientError do @client.drop_class(super_clazz, :mode => :strict); end
     assert_nothing_thrown do @client.get_class(super_clazz); end # still there
     @client.drop_class(CLASS);
     assert_nothing_thrown do @client.drop_class(super_clazz, :mode => :strict); end

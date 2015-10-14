@@ -438,7 +438,7 @@ module Orientdb4r
           when content_type.start_with?('application/json')
             ::JSON.parse(response.body)
           else
-            raise OrientdbError, "unsuported content type: #{content_type}"
+            raise OrientdbError, "unsupported content type: #{content_type}"
           end
 
         rslt
@@ -461,14 +461,14 @@ module Orientdb4r
 
         # raise problem if other code than 200
         if options[:mode] == :strict and 200 != response.code
-          raise OrientdbError, "unexpeted return code, code=#{response.code}"
+          raise OrientdbError, "unexpected return code, code=#{response.code}"
         end
         # log warning if other than 200 and raise problem if other code than 'Successful 2xx'
         if options[:mode] == :warning
           if 200 != response.code and 2 == (response.code / 100)
             Orientdb4r::logger.warn "expected return code 200, but received #{response.code}"
           elseif 200 != response.code
-            raise OrientdbError, "unexpeted return code, code=#{response.code}"
+            raise OrientdbError, "unexpected return code, code=#{response.code}"
           end
         end
 

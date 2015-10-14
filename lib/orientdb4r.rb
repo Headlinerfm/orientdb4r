@@ -90,6 +90,10 @@ module Orientdb4r
   # e.g. connection broken pipe
   class NodeError < OrientdbError; end
 
+  ###
+  # Error indicating the client has attempted to perform an illegal operation.
+  class ClientError < OrientdbError; end
+
 end
 
 
